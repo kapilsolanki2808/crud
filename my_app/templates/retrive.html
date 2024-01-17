@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <title>Retrieve</title>
+  <style>
+    table, th, td {
+      border: 1px solid black;
+    }
+  </style>
+</head>
+<body>
+  <table>
+    <tr align="center">
+      <th>ID</th>
+      <th>FIRST NAME</th>
+      <th>LAST NAME</th>
+      <th>ROLL NUMBER</th>
+      <th>MOBILE NUMBER</th>
+      <th>IMAGE</th>
+      <th>VIEW DATA</th>
+      <th>UPDATE DATA</th>
+      <th>DELETE DATA</th>
+      <th>CREATE DATA</th>
+    </tr>
+    {% for obj in data %}
+    <tr align="center"> 
+      <td >{{ obj.ids }}</td>
+      <td>{{ obj.first_name }}</td>
+      <td>{{ obj.last_name }}</td>
+      <td>{{ obj.roll_number }}</td>
+      <td>{{ obj.mobile_number }}</td>
+      <td>
+        {% if obj.image %}
+          <img src="{{ obj.image.url }}" alt="image", height="25",width='25'>
+        {% endif %}
+    </td> 
+      <td><a href="/my_app/view/detail/{{ obj.ids }}/">view</a></td>
+      <td><a href="/my_app/update/{{ obj.ids }}/">update</a></td>
+      <td>
+        <a href="/my_app/sure/delete/{{ obj.ids }}/">delete</a>
+      </td>
+      <td>
+        <a href="/my_app/create">create</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+</body>
+ 
+</html>
